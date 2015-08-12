@@ -41,4 +41,16 @@ class Error {
 		self::$session->write('Error', null);
 	}
 	
+	public static function restore($sessions) {
+		if (!empty($sessions) && is_array($sessions)) {
+			foreach ($sessions as $type=>$messages) {
+				if (!empty($messages) && is_array($messages)) {
+					foreach ($messages as $message) {
+						self::add($message, $type);
+					}
+				}
+			}
+		}
+	}
+	
 }
